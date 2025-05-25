@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to right, #FFD700, #FF8C00); /* Gold and orange gradient */
+            color: #333;
+            min-height: 100vh;
+            padding-top: 60px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #2F4F4F;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+            margin: 0;
+            color: #FF8C00;
+        }
+
+        .logout-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .back-button, .logout-button {
+            background-color: #FF8C00;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .back-button:hover, .logout-button:hover {
+            background-color: #FFA500;
+            transform: scale(1.05);
+            color: #333;
+        }
+
+        /* Book Panels */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr; /* Only one column to make it a list layout */
+            gap: 20px;
+            padding: 0 10px;
+            max-width: 1200px;
+            margin-top: 120px; /* Adjust to avoid navbar overlap */
+        }
+
+        .book-panel {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #2F4F4F;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .book-panel:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-panel img {
+            max-width: 150px; /* Resize the image */
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .book-panel h3 {
+            font-size: 22px;
+            color: #FF8C00;
+            margin-bottom: 10px;
+        }
+
+        .book-panel p {
+            color: #4B0082;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .book-panel .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .book-panel .info-label {
+            font-weight: bold;
+            color: #FF8C00;
+        }
+
+        .book-panel .info-value {
+            color: #333;
+        }
+
+        .book-panel button {
+            background-color: #FF8C00;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .book-panel button:hover {
+            background-color: #FFA500;
+            transform: scale(1.05);
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>Book Finder</h1>
+        <div class="logout-container">
+            <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+            <a href="{{ url_for('search') }}" class="back-button">Back to Search</a>
+        </div>
+    </div>
+    <br><br>
+    
+    <!-- Page Title -->
+    <h1>Search Results</h1>
+
+   <!-- searched_book.html -->
+<section class="container">
+    {% if books %}
+        {% for book in books %}
+            <div class="book-panel">
+                <img src="{{ book.image }}" alt="Book Image">
+                <h3>{{ book.title }}</h3>
+                <p><strong>Author:</strong> {{ book.author }}</p>
+                <p><strong>Description:</strong> {{ book.description }}</p>
+                <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+                <p><strong>Published Year:</strong> {{ book.published_year }}</p>
+                <p><strong>Page Count:</strong> {{ book.page_count }}</p>
+                <p><strong>Categories:</strong> {{ book.categories }}</p>
+                <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+                <a href="{{ book.preview_link }}" target="_blank"><button>Preview Book</button></a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No books found for your search.</p>
+    {% endif %}
+</section>
+</body>
+</html>
