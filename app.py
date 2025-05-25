@@ -14,7 +14,7 @@ connection = pymysql.connect(
 )
 
 # Google Books API Key
-API_KEY = "AIzaSyDYYKjuQVM8a2NYFya3tBAaYvKb0VMCYAY"
+API_KEY = "Google_API_Key"
 
 @app.route('/')
 def home():
