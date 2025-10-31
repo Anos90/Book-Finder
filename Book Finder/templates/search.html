@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Info | Book Finder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to right, #FFD700, #FF8C00);
+            /* Gold and orange gradient */
+            color: #333;
+            min-height: 100vh;
+            padding-top: 60px;
+        }
+
+         /* Navbar Styling */
+         .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #2F4F4F;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+            margin: 0;
+            color: #FF8C00;
+        }
+      /* Search bar */
+.search-bar {
+    margin: 80px 0 20px;
+    width: 50%;  /* Increased width to make the search bar larger */
+    max-width: 800px;  /* Increased maximum width */
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 16px;  /* Increased padding for larger input area */
+    border: 1px solid #ddd;
+    border-radius: 8px 0 0 8px;  /* Slightly more rounded corners */
+    font-size: 18px;  /* Increased font size */
+}
+
+.search-bar button {
+    padding: 16px 24px;  /* Increased padding for larger button area */
+    background: #FF8C00;
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-size: 18px;  /* Increased font size */
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #FFA500;
+    transform: scale(1.05);
+}
+
+        /* Book Panels */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 0 10px;
+            max-width: 1200px;
+        }
+
+        .book-panel {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #2F4F4F;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .book-panel:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-panel img {
+            max-width: 100%;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .book-panel h3 {
+            font-size: 20px;
+            color: #FF8C00;
+            margin-bottom: 10px;
+        }
+
+        .book-panel p {
+            color: #4B0082;
+            font-size: 14px;
+        }
+
+        .book-panel button {
+            background-color: #FF8C00;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .book-panel button:hover {
+            background-color: #FFA500;
+            transform: scale(1.05);
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Book Finder</h1>
+        <div class="logout-container">
+            <div class="dropdown">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    <br>
+
+   <!-- Search Bar -->
+   <form action="{{ url_for('searched_book') }}" method="get">
+    <input type="text" name="query" placeholder="Search for a book..." id="bookSearch">
+    <button type="submit">Search</button>
+</form>
+
+    <br>
+    <br>
+
+    <!-- Book Panel Section -->
+    <section class="container">
+        {% for book in trending_books %}
+        <div class="book-panel">
+            <img src="{{ book.image }}" alt="{{ book.title }}">
+            <br>
+            <h3>{{ book.title }}</h3>
+            <br>
+            <p>{{ book.description }}</p>
+            <br>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <br>
+            <a href="{{ book.preview_link }}" target="_blank">
+                <button>Preview Book</button>
+            </a>
+            <br>
+        </div>
+        {% endfor %}
+    </section>
+
+       <script>
+    function searchBook() {
+        var query = document.getElementById('bookSearch').value.trim();
+        if (query) {
+            var url = 'searched_book.html?query=' + encodeURIComponent(query);
+            window.location.href = url;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Book Finder</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comic Sans MS', Arial, sans-serif; }
+        
+        body { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            background: linear-gradient(to right, #FFD700, #FF8C00); /* Gold and orange gradient */
+            color: #333;
+        }
+
+        .signup-container { 
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 40px 60px; 
+            max-width: 400px; 
+            width: 100%; 
+            border-radius: 12px; 
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2); 
+            text-align: center; 
+        }
+
+        .signup-container h1 { 
+            font-size: 28px; 
+            color: #2F4F4F; /* Dark slate gray */ 
+            margin-bottom: 10px;
+        }
+
+        .signup-container input {
+            width: 100%; 
+            padding: 12px; 
+            margin: 10px 0; 
+            border: 1px solid #ddd; 
+            border-radius: 6px; 
+            font-size: 16px;
+        }
+
+        .signup-container button { 
+            width: 100%; 
+            padding: 12px; 
+            background: linear-gradient(to right, #FFD700, #FF8C00); 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            margin-top: 20px; 
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .signup-container button:hover { 
+            background-color: #FFA500; /* Bright orange */
+            transform: scale(1.05); 
+            color: #333;
+        }
+
+        .signup-container p { 
+            font-size: 14px; 
+            color: #4B0082; /* Indigo */ 
+            margin-top: 1rem; 
+        }
+
+        .signup-container p a { 
+            color: #2F4F4F; 
+            text-decoration: none; 
+            font-weight: bold;
+        }
+        
+        .signup-container p a:hover { 
+            text-decoration: underline; 
+            color: #FF4500; 
+        }
+        
+        .error-message { 
+            color: red; 
+            font-size: 14px; 
+            margin-top: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+        <form action="\sign_up" method="POST">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <button type="submit">Create Account</button>
+            {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+            {% endif %}
+        </form>
+        <p>Already have an account? <a href="\login">Log in</a></p>
+    </div>
+</body>
+</html>

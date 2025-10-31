@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Finder</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #E0F7FA; /* Light blue background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        nav {
+            width: 100%;
+            background: linear-gradient(to right, #FFD700, #FF8C00); /* Gold and orange gradient */
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold; 
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FF4500; /* Bright orange */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 4rem 1rem;
+            text-align: center;
+            background-color: #F0E68C; /* Light khaki */
+            color: #333;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2F4F4F; /* Dark slate gray */
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #4B0082; /* Indigo */
+        }
+
+        .cta-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: #FFD700; /* Gold */
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+            background-color: #FFA500; /* Orange */
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: #FFF8DC; /* Cornsilk */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .features-section h2 {
+            font-size: 2.5rem;
+            color: #2E8B57; /* Sea green */
+        }
+
+        .feature-card {
+            width: 80%;
+            max-width: 800px;
+            background: #FFD700; /* Gold */
+            color: #333;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2F4F4F;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Book Finder</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="\login">Login</a>
+            <a href="\sign_up">Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div>
+            <h1>Welcome to Book Finder</h1>
+            <p>Your ultimate destination for book release info, reviews, recommendations, and more!</p>
+            <button class="cta-btn"><a href="\login" style="color: inherit; text-decoration: none;">Explore Now</a></button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2>Our Key Features</h2>
+        <div class="feature-card">
+            <h3>Book Reviews</h3>
+            <p>Read and share reviews to help guide your next book selection.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Author Insights</h3>
+            <p>Exclusive insights and interviews with your favorite authors.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Trending Books</h3>
+            <p>Discover the most popular books currently captivating readers worldwide.</p>
+        </div>
+        
+    </section>
+    
+</body>
+</html>
